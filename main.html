@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Employee-records</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-app="App">
+    <h1 style="text-align:center; color:springgreen; text-shadow: 2px 2px rgb(15, 118, 228)">Employee Table</h1>
+    <hr>
+    <div ng-controller="CrudCtrl">
+        <table>
+            <tr>
+                <td>
+                    <b>Id</b>
+                </td>
+                <td>
+                    <b>Name</b>
+                </td>
+                <td>
+                    <b>Age</b>
+                </td>
+                <td>
+                    <span ng-click="add()">Add New</span>
+                </td>
+            </tr>
+            <tr ng-repeat="emp in employees">
+                <td>
+                    <input type="number" ng-model="emp.id" ng-show="emp.editable">
+                    <span ng-hide="emp.editable"> {{emp.id}}</span>
+                </td>
+                <td>
+                    <input type="text" ng-model="emp.name" ng-show="emp.editable">
+                    <span ng-hide="emp.editable">{{ emp.name }}</span>
+                </td>
+                <td>
+                    <input type="number" ng-model="emp.age" ng-show="emp.editable">
+                    <span ng-hide="emp.editable">{{ emp.age }}</span>
+                </td>
+                <td>
+                    <span ng-click="edit($index)" ng-hide="emp.editable">Edit</span>
+                    <span ng-click="save($index)" ng-show="emp.editable">Save</span>
+                    <span ng-click="delete($index)"> | Delete</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
